@@ -15,4 +15,6 @@ type googleOAuthConfig struct {
 	ClientID     string `koanf:"client_id"`
 	ClientSecret string `koanf:"client_secret"`
 	RedirectURL  string `koanf:"redirect_url"`
+	Scope        string `koanf:"scope"`
+	OAuthURL     string `koanf:"oauth_url"`
 }

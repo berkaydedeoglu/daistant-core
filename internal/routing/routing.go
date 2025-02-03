@@ -25,8 +25,11 @@ func New(config *configs.Config, handler *handler.GoogleHandler) *Router {
 	}
 }
 
-func (r *Router) RegisterRoutes() {
-	r.router.GET("/auth/google/callback", r.handler.AuthGoogleCallback)
+func (r *Router) RegisterThirdPartyRoutes() {
+	thirdParty := r.router.Group("/third-party")
+
+	thirdParty.GET("/google/oauth/url", r.handler.GetOAuthURL)
+	thirdParty.GET("/google/oauth/callback", r.handler.AuthGoogleCallback)
 }
 
 func (r *Router) Run() {

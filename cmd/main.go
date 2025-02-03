@@ -19,7 +19,7 @@ func main() {
 	service := service.NewGoogleService(config, &repo)
 	handler := handler.NewGoogleHandler(config, service)
 	router := routing.New(config, handler)
-	router.RegisterRoutes()
+	router.RegisterThirdPartyRoutes()
 
 	router.Run()
 }
