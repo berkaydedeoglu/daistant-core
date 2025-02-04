@@ -12,6 +12,8 @@ type Repository interface {
 
 	CreateThirdPartyConnection(ctx context.Context, thirdPartyConnection *model.ThirdPartyConnection) error
 	GetThirdPartyConnectionByID(ctx context.Context, id uint) (*model.ThirdPartyConnection, error)
+	GetThirdPartyConnectionByUserID(ctx context.Context, userID uint, thirdPartyType string) (*model.ThirdPartyConnection, error)
+	UpdateThirdPartyConnection(ctx context.Context, thirdPartyConnection *model.ThirdPartyConnection) error
 }
 
 type repository struct {

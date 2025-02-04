@@ -28,8 +28,10 @@ func New(config *configs.Config, handler *handler.GoogleHandler) *Router {
 func (r *Router) RegisterThirdPartyRoutes() {
 	thirdParty := r.router.Group("/third-party")
 
-	thirdParty.GET("/google/oauth/url", r.handler.GetOAuthURL)
-	thirdParty.GET("/google/oauth/callback", r.handler.AuthGoogleCallback)
+	google := thirdParty.Group("/google")
+	google.GET("/oauth/url", r.handler.GetOAuthURL)
+	google.GET("/oauth/callback", r.handler.AuthGoogleCallback)
+	google.GET("/access-token", r.handler.GetAccessToken)
 }
 
 func (r *Router) Run() {

@@ -7,3 +7,10 @@ type ExchangeCodeRequest struct {
 	Code         string `json:"code"`
 	GrantType    string `json:"grant_type"`
 }
+
+type RefreshTokenRequest struct {
+	ClientID     string `json:"client_id"`
+	ClientSecret string `json:"client_secret"`
+	RefreshToken string `json:"refresh_token"`
+	GrantType    string `json:"grant_type"`
+}

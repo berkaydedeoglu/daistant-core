@@ -39,3 +39,13 @@ func (h *GoogleHandler) GetOAuthURL(c *gin.Context) {
 	resp := h.service.GetOAuthURL(c, 1)
 	c.JSON(http.StatusOK, resp)
 }
+
+func (h *GoogleHandler) GetAccessToken(c *gin.Context) {
+	accessToken, err := h.service.GetAccessToken(c, 1)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"access_token": accessToken})
+}
