@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"context"
 	"daistant-core/internal/model"
 
 	"gorm.io/gorm"
@@ -9,8 +10,8 @@ import (
 type Repository interface {
 	GetUserByID(id uint) (*model.User, error)
 
-	CreateThirdPartyConnection(thirdPartyConnection *model.ThirdPartyConnection) error
-	GetThirdPartyConnectionByID(id uint) (*model.ThirdPartyConnection, error)
+	CreateThirdPartyConnection(ctx context.Context, thirdPartyConnection *model.ThirdPartyConnection) error
+	GetThirdPartyConnectionByID(ctx context.Context, id uint) (*model.ThirdPartyConnection, error)
 }
 
 type repository struct {

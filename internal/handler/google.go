@@ -3,7 +3,6 @@ package handler
 import (
 	"daistant-core/configs"
 	"daistant-core/internal/model/http/request"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -27,7 +26,11 @@ func (h *GoogleHandler) AuthGoogleCallback(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(req.Code)
+	err := h.service.ExchangeCode(c, 1, req.Code, req.Scope)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Success"})
 }

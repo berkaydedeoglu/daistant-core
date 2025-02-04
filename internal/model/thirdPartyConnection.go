@@ -6,6 +6,10 @@ import (
 	"gorm.io/gorm"
 )
 
+const (
+	ProviderGoogle = "google"
+)
+
 type ThirdPartyConnection struct {
 	gorm.Model
 	ID uint

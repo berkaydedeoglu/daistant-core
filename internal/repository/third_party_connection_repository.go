@@ -1,16 +1,16 @@
 package repository
 
 import (
+	"context"
 	"daistant-core/internal/model"
 )
 
-func (r *repository) CreateThirdPartyConnection(
-	thirdPartyConnection *model.ThirdPartyConnection,
-) error {
-	return r.db.Create(thirdPartyConnection).Error
+func (r *repository) CreateThirdPartyConnection(ctx context.Context, thirdPartyConnection *model.ThirdPartyConnection) error {
+	return r.db.WithContext(ctx).Create(thirdPartyConnection).Error
 }
 
 func (r *repository) GetThirdPartyConnectionByID(
+	ctx context.Context,
 	id uint,
 ) (*model.ThirdPartyConnection, error) {
 	var thirdPartyConnection model.ThirdPartyConnection

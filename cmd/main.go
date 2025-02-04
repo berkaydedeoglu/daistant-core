@@ -7,6 +7,7 @@ import (
 	"daistant-core/internal/repository"
 	"daistant-core/internal/routing"
 	"daistant-core/internal/service"
+	"daistant-core/pkg/googleClient"
 )
 
 func main() {
@@ -16,7 +17,8 @@ func main() {
 	database.Migrate(db)
 
 	repo := repository.NewRepository(db)
-	service := service.NewGoogleService(config, &repo)
+	googleClient := googleClient.NewGoogleClient(config.GoogleOAuth.ClientID, config.GoogleOAuth.ClientSecret, config.GoogleOAuth.RedirectURL)
+	service := service.NewGoogleService(config, repo, googleClient)
 	handler := handler.NewGoogleHandler(config, service)
 	router := routing.New(config, handler)
 	router.RegisterThirdPartyRoutes()
